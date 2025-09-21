@@ -99,7 +99,7 @@ Ideal for technical discussions, research questions, or when you need authoritat
 #### Creative Mode 
 Great for brainstorming, creative writing, or when you need innovative solutions. The AI uses metaphors, vivid descriptions, and unconventional approaches.
 
-## 🛠 Configuration
+##  Configuration
 
 The application can be customized through the sidebar:
 
