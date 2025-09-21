@@ -13,7 +13,7 @@ groq_api_key = st.secrets["groq_api_key"]
 # Set up the page configuration for the Streamlit app
 st.set_page_config(
     page_title='Groq Chatbot',   # Set the title of the web app
-    page_icon='🤖',              # Add a robot emoji as the page icon
+    page_icon='Meesho',              
     layout='wide',               # Use a wide layout for more space
     initial_sidebar_state='expanded'  # Keep the sidebar expanded initially
 )
@@ -85,7 +85,7 @@ def main():
         st.title('Configure Your Chat Experience ⚙️')
 
         # Model selection dropdown
-        st.subheader('Select AI Model 🤖')
+        st.subheader('Select AI Model ')
         model = st.selectbox(
             'Choose a model:', 
             [ 'gemma2-9b-it', 'mixtral-8x7b-32768'],
@@ -93,7 +93,7 @@ def main():
         )
         
         # Conversational memory length slider
-        st.subheader('Set Conversation Memory 🔁')
+        st.subheader('Set Conversation Memory ')
         memory_length = st.slider(
             'Conversational Memory Length:', 
             1, 10, 5,
@@ -101,7 +101,7 @@ def main():
         )
         
         # Persona selection dropdown
-        st.subheader('Choose AI Personality 🎭')
+        st.subheader('Choose AI Personality ')
         st.session_state.selected_persona = st.selectbox(
             'Select Conversation Style:',
             ['Default', 'Expert', 'Creative']
@@ -109,7 +109,7 @@ def main():
 
         # Display chat statistics if the session has started
         if st.session_state.start_time:
-            st.subheader('Conversation Overview 📊')
+            st.subheader('Conversation Overview ')
             col1, col2 = st.columns(2)
             
             # Column 1: Display number of messages
@@ -122,13 +122,13 @@ def main():
                 st.metric('Session Duration', f'{duration.seconds // 60} minutes {duration.seconds % 60} seconds')
         
         # Button to clear chat history with an emoji
-        if st.button('Clear All Chats and Start Fresh 🗑️', use_container_width=True):
+        if st.button('Clear All Chats and Start Fresh ', use_container_width=True):
             st.session_state.chat_history = []  # Reset chat history
             st.session_state.start_time = None  # Reset the start time
             st.rerun()  # Rerun the app to refresh the state
 
     # Set the title of the chatbot application with an emoji
-    st.title('Groq AI Assistant 🤖')
+    st.title('Groq AI Assistant ')
 
     # Initialize the conversational memory buffer with the chosen memory length
     memory = ConversationBufferWindowMemory(k=memory_length)
@@ -158,18 +158,18 @@ def main():
     for message in st.session_state.chat_history:
         with st.container():
             # Show the human's message with an emoji
-            st.write('You said 🗣️')
+            st.write('You said ')
             st.info(message['human'])  # Display the human message with an info box
 
         with st.container():
             # Show the AI's response, indicating the selected persona mode with an emoji
-            st.write(f'AI Assistant ({st.session_state.selected_persona} mode) replied 🤖')
+            st.write(f'AI Assistant ({st.session_state.selected_persona} mode) replied ')
             st.success(message['AI'])  # Display the AI response with a success box
 
         st.write('')  # Add an empty line for spacing between chat messages
 
     # User input section with an emoji
-    st.markdown('What do you want to ask? 💬')  # Section heading
+    st.markdown('What do you want to ask? ')  # Section heading
     user_question = st.text_area(
         '',                          # No label
         height=100,                  # Height of the text area
@@ -183,13 +183,13 @@ def main():
 
     # Send button in the middle column with an emoji
     with col2:
-        send_button = st.button('Send Message 🚀', use_container_width=True)
+        send_button = st.button('Send Message ', use_container_width=True)
 
     # New Topic button in the last column to clear memory, with an emoji
     with col3:
-        if st.button('Start New Conversation 🆕', use_container_width=True):
+        if st.button('Start New Conversation ', use_container_width=True):
             memory.clear()  # Clear the conversation memory for a fresh topic
-            st.success('Chat history has been cleared. Start a new conversation! 🔄')
+            st.success('Chat history has been cleared. Start a new conversation! ')
 
     # If the user clicks 'Send' and there is a question in the input box
     if send_button and user_question:
@@ -199,7 +199,7 @@ def main():
             st.session_state.start_time = datetime.now()
 
         # Display a spinner while processing the response
-        with st.spinner('Processing your request... 🧠💡'):
+        with st.spinner('Processing your request... '):
             try:
                 # Get the response from the conversation chain
                 response = conversation(user_question)
